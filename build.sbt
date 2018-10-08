@@ -11,5 +11,6 @@ resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies ++= Seq(
   "com.github.melrief" %% "purecsv" % "0.1.1",
+  "org.scalaz" %% "scalaz-zio" % "0.2.10",
   "org.scalatest" %% "scalatest" % "3.0.5" % Test
 )
