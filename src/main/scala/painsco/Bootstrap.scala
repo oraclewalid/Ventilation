@@ -10,6 +10,7 @@ import PureCsvExtention._
 
 object Bootstrap extends App {
 
+  val headers = Some(Seq("Date", "Sandwichs", "Viennoiserie", "Patisserie","Pains","Boissons", "Conso/place", "Total"))
   def run(args: List[String]): IO[Nothing, ExitStatus] =
     myAppLogic.
       attempt.
@@ -18,9 +19,10 @@ object Bootstrap extends App {
 
   def myAppLogic: IO[IOException, Unit] ={
 
-    val records = CSVReader[RawDailySales].readCSVFromFileName("/home/walid/painsco/Ventilation/src/main/resources/T4.csv", skipHeader = true)
+    val records = CSVReader[RawDailySales].readCSVFromFileName("/home/walid/painsco/Ventilation/src/main/resources/T3.csv", skipHeader = true)
 
-    records.foreach(print(_))
+    val detailedDailySaleses = records.map(record => CoefficientGenerator.comot(record))
+    detailedDailySaleses.reverse.writeCSVToFileName(fileName = "T33.csv", header = headers, sep = ";")
     for {
       _ <- putStrLn(s"${records.length}")
     } yield ()

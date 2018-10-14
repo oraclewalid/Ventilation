@@ -2,14 +2,18 @@ package painsco
 
 object Intervals {
 
+  sealed trait Period
+  class Week extends Period
+  class WeekEnd extends Period
+
   case class  Interval(start: Int, end: Int){
     def generate: Int = {
-      val rnd = new scala.util.Random
+      val rnd = new scala.util.Random(3333)
       start + rnd.nextInt( (end - start) + 1 )
     }
   }
 
-  trait DailyInterval {
+  trait DailyInterval[T] {
 
     val SandInterval: Interval
     val ViennInterval: Interval
@@ -19,21 +23,21 @@ object Intervals {
     val OnSiteInterval: Interval
   }
 
-  implicit val weekInterval = new DailyInterval {
-    override val SandInterval: Interval = Interval(22, 25)
-    override val ViennInterval: Interval = Interval(22, 30)
-    override val PatInterval: Interval = Interval(12, 15)
-    override val PainInterval: Interval = Interval(15, 17)
-    override val BoisInterval: Interval = Interval(22, 25)
-    override val OnSiteInterval: Interval = Interval(5, 7)
+  implicit val weekInterval = new DailyInterval[Week] {
+    override val SandInterval = Interval(25, 30)
+    override val ViennInterval = Interval(27, 32)
+    override val PatInterval = Interval(10, 15)
+    override val PainInterval = Interval(15, 17)
+    override val BoisInterval = Interval(5, 6)
+    override val OnSiteInterval = Interval(5, 7)
   }
 
-  implicit val weekEndInterval = new DailyInterval {
-    override val SandInterval: Interval = Interval(22, 25)
-    override val ViennInterval: Interval = Interval(22, 30)
-    override val PatInterval: Interval = Interval(12, 15)
-    override val PainInterval: Interval = Interval(15, 17)
-    override val BoisInterval: Interval = Interval(22, 25)
-    override val OnSiteInterval: Interval = Interval(5, 7)
+  implicit val weekEndInterval = new DailyInterval[WeekEnd] {
+    override val SandInterval = Interval(7, 10)
+    override val ViennInterval = Interval(30, 35)
+    override val PatInterval = Interval(15, 20)
+    override val PainInterval = Interval(15, 17)
+    override val BoisInterval = Interval(3, 6)
+    override val OnSiteInterval = Interval(4, 5)
   }
 }
