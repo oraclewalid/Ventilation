@@ -6,7 +6,7 @@ import DailySalesModels.RawDailySales
 import scalaz.zio.{App, IO}
 import scalaz.zio.console._
 import purecsv.unsafe._
-import purecsvextension._
+import PureCsvExtention._
 
 object Bootstrap extends App {
 
@@ -19,6 +19,8 @@ object Bootstrap extends App {
   def myAppLogic: IO[IOException, Unit] ={
 
     val records = CSVReader[RawDailySales].readCSVFromFileName("/home/walid/painsco/Ventilation/src/main/resources/T4.csv", skipHeader = true)
+
+    records.foreach(print(_))
     for {
       _ <- putStrLn(s"${records.length}")
     } yield ()
