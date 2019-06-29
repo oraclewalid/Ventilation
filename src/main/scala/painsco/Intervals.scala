@@ -8,7 +8,7 @@ object Intervals {
 
   case class  Interval(start: Int, end: Int){
     def generate: Int = {
-      val rnd = new scala.util.Random(3333)
+      val rnd = new scala.util.Random(1111111)
       start + rnd.nextInt( (end - start) + 1 )
     }
   }

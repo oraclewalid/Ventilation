@@ -16,7 +16,7 @@ object CoefficientGenerator {
   def compute(coefficient: Coefficient, rawDailySales: RawDailySales) : DetailedDailySales = {
 
     def computeByType(coefficient: Double): Double = {
-      BigDecimal((coefficient * rawDailySales.grosssales) / 100)
+      BigDecimal((coefficient * rawDailySales.netsales) / 100)
         .setScale(1, BigDecimal.RoundingMode.HALF_UP).toDouble
     }
 
