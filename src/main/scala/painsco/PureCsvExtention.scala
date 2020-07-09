@@ -9,7 +9,7 @@ package object PureCsvExtention {
 
   import java.time.format.DateTimeFormatter
 
-  val formatter = DateTimeFormatter.ofPattern("M/d/yy")
+  val formatter = DateTimeFormatter.ofPattern("MMM/d/yyyy", Locale.US)
 
 
   implicit val dateTimeStringConverter = new StringConverter[LocalDate] {
@@ -17,7 +17,8 @@ package object PureCsvExtention {
     override def to(dateTime: LocalDate): String = dateTime.toString
 
     override def from(b: String): LocalDate = {
-      LocalDate.parse(s"$b", formatter)
+      println(b)
+      LocalDate.parse(s"${b}/2020", formatter)
     }
   }
 

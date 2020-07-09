@@ -28,8 +28,8 @@ object Intervals {
     override val ViennInterval = Interval(27, 32)
     override val PatInterval = Interval(10, 15)
     override val PainInterval = Interval(15, 17)
-    override val BoisInterval = Interval(5, 6)
-    override val OnSiteInterval = Interval(5, 7)
+    override val BoisInterval = Interval(3, 4)
+    override val OnSiteInterval = Interval(0, 0)
   }
 
   implicit val weekEndInterval = new DailyInterval[WeekEnd] {
@@ -37,7 +37,7 @@ object Intervals {
     override val ViennInterval = Interval(30, 35)
     override val PatInterval = Interval(15, 20)
     override val PainInterval = Interval(15, 17)
-    override val BoisInterval = Interval(3, 6)
-    override val OnSiteInterval = Interval(4, 5)
+    override val BoisInterval = Interval(4, 5)
+    override val OnSiteInterval = Interval(0, 0)
   }
 }

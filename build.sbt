@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "com.painsco",
-      scalaVersion := "2.12.7"
+      scalaVersion := "2.12.11"
     )),
     name := "Ventilation"
   )
